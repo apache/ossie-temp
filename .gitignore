@@ -1,2 +1,9 @@
 **/__pycache__/
 **/.venv/
+
+# Go CLI
+cli/dist/
+cli/ossie
+
+# Generated from core-spec/osi-schema.json by `make prepare`
+cli/internal/schema/osi-schema.json
