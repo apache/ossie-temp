@@ -74,18 +74,6 @@ Logical data types for fields and metrics.
 | `timestamp_tz` | Instant-in-time with timezone offset (zoned). |
 | `other` | Any data type not covered above; use `custom_extensions` for vendor-specific refinement. |
 
-### Vendors
-
-Supported vendors for custom extensions and integrations.
-
-| Vendor | Description |
-|--------|-------------|
-| `COMMON` | Common/standard extensions |
-| `SNOWFLAKE` | Snowflake-specific attributes |
-| `SALESFORCE` | Salesforce/Tableau-specific attributes |
-| `DBT` | dbt-specific attributes |
-| `DATABRICKS` | Databricks-specific attributes |
-
 ## Semantic Model
 
 The top-level container that represents a complete semantic model, including datasets, relationships, and  metrics.
