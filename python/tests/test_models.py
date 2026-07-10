@@ -25,8 +25,6 @@ from pydantic import ValidationError
 from ossie import (
     OSICustomExtension,
     OSIDataType,
-    OSIDialect,
-    OSIDialectExpression,
     OSIDimension,
     OSIDocument,
     OSIExpression,
@@ -35,10 +33,12 @@ from ossie import (
 )
 
 
+def _expression_data(value: str = "value") -> dict:
+    return {"dialects": [{"dialect": "ANSI_SQL", "expression": value}]}
+
+
 def _expression(value: str = "value") -> OSIExpression:
-    return OSIExpression(
-        dialects=[OSIDialectExpression(dialect=OSIDialect.ANSI_SQL, expression=value)]
-    )
+    return OSIExpression.model_validate(_expression_data(value))
 
 
 def _document() -> dict:
@@ -54,14 +54,7 @@ def _document() -> dict:
                         "fields": [
                             {
                                 "name": "occurred_at",
-                                "expression": {
-                                    "dialects": [
-                                        {
-                                            "dialect": "ANSI_SQL",
-                                            "expression": "occurred_at",
-                                        }
-                                    ]
-                                },
+                                "expression": _expression_data("occurred_at"),
                                 "dimension": {},
                                 "datatype": "DateTimeTz",
                             }
@@ -71,14 +64,7 @@ def _document() -> dict:
                 "metrics": [
                     {
                         "name": "revenue",
-                        "expression": {
-                            "dialects": [
-                                {
-                                    "dialect": "ANSI_SQL",
-                                    "expression": "SUM(events.revenue)",
-                                }
-                            ]
-                        },
+                        "expression": _expression_data("SUM(events.revenue)"),
                         "datatype": "Decimal",
                     }
                 ],
@@ -94,6 +80,12 @@ def test_data_type_enum_matches_core_schema() -> None:
     assert [member.value for member in OSIDataType] == schema["$defs"]["DataType"][
         "enum"
     ]
+    assert schema["$defs"]["Field"]["properties"]["datatype"] == {
+        "$ref": "#/$defs/DataType"
+    }
+    assert schema["$defs"]["Metric"]["properties"]["datatype"] == {
+        "$ref": "#/$defs/DataType"
+    }
 
 
 def test_field_and_metric_datatypes_survive_serialization() -> None:
