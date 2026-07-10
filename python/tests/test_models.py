@@ -23,6 +23,7 @@ import yaml
 from pydantic import ValidationError
 
 from ossie import (
+    OSICustomExtension,
     OSIDataType,
     OSIDialect,
     OSIDialectExpression,
@@ -30,6 +31,7 @@ from ossie import (
     OSIDocument,
     OSIExpression,
     OSIField,
+    OSIVendor,
 )
 
 
@@ -117,6 +119,15 @@ def test_invalid_datatype_is_rejected() -> None:
 
     with pytest.raises(ValidationError):
         OSIDocument.model_validate(document)
+
+
+def test_polaris_custom_extension_vendor_is_supported() -> None:
+    extension = OSICustomExtension(
+        vendor_name="POLARIS",
+        data='{"iceberg_type":"uuid"}',
+    )
+
+    assert extension.vendor_name is OSIVendor.POLARIS
 
 
 @pytest.mark.parametrize(
