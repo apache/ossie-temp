@@ -48,7 +48,7 @@ e-mail address. In some modeling languages these are called either entities or o
 
 A value type is a concept that represents instances of some data type (i.e SQL types like Integer
 or String) with additional semantics. For instance, a social-security number is a string or positive
-integer that comprises exactly nine digits. In some modeling langauges these are called data types
+integer that comprises exactly nine digits. In some modeling languages these are called data types
 or domains.
 
 ### Built-in concepts
@@ -220,7 +220,7 @@ ontology:
           - concept: Vehicle
           - concept: Date
         multiplicity: ManyToOne
-        verbalizes: [ "{Person} puchased {Vehicle} on {Date}" ]
+        verbalizes: [ "{Person} purchased {Vehicle} on {Date}" ]
 ```
 
 the unary relationship `Person.files_married_joint` has an empty roles list, while the
@@ -228,7 +228,7 @@ ternary relationship `Person.purchased_on` declares two additional roles played 
 `Vehicle` and `Date` respectively,
 
 The role player often suffices to distinguish the role within its relationship, but when
-the same concept plays more than one role, the user must declare a distinguising name for
+the same concept plays more than one role, the user must declare a distinguishing name for
 any additional role whose player's name does not distinguish it from other roles in
 the same relationship. For instance, in:
 
@@ -253,13 +253,13 @@ this relationship.
 Expressions that are used to define derived_by rules and requires constraints will refer to
 roles by name -- the name defaulting to the concept that plays the role unless an explicit
 role name is provided. In any expression that involving links of the `Store.ships_to_in_days`
-relationship can then use the variables `Store` and `destination` to refer to objecs that
+relationship can then use the variables `Store` and `destination` to refer to objects that
 play these two `Store`-playing roles without ambiguity.
 
 #### Multiplicities
 
 If a relationship comprises more than one role, objects that play the last role could be functionally
-dermined by a tuple of objects that play the other roles. This knowledge is declared using a `ManyToOne`
+determined by a tuple of objects that play the other roles. This knowledge is declared using a `ManyToOne`
 multiplicity constraint. In the examples above, the constraint declares that each person earns at most
 one salary and that for each pair of stores, the former ships to the latter in at most one number of
 days. For relationships of ternary and higher arity, the multiplicity applies to the n-th role, meaning
@@ -422,7 +422,7 @@ An object mapping has the following schema:
 |---------------|---------|-----|-------|
 | `concept`     | string  | No | Names the concept being mapped to using this object map |
 | `expression`  | string  | if no `referent_mappings` | SQL expression that computes a value from fields |
-| `referent_mappings` | list  | if no `expression` | Referent mappings that find entity objects using identifying realtionships |
+| `referent_mappings` | list  | if no `expression` | Referent mappings that find entity objects using identifying relationships |
 
 When the concept is a value type or an entity type with a simple identifier, then an object mapping is just
 a SQL expression. For instance, given this ontology snippet:
@@ -473,7 +473,7 @@ Referent mappings have the following schema:
 |----------------|--------|-----|-------|
 | `relationship` | string | Yes | Name of an identifying relationship |
 | `expression`  | string  | if no `referent_mappings` | SQL expression that computes a value from fields |
-| `referent_mappings` | list  | if no `expression` | Referent mappings that find entity objects using identifying realtionships |
+| `referent_mappings` | list  | if no `expression` | Referent mappings that find entity objects using identifying relationships |
 
 For instance, consider this ontology snippet:
 

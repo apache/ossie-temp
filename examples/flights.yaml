@@ -864,7 +864,7 @@ ontology_mappings:
                     expression: CAST(percent_change_display AS DOUBLE)
         - name: Example_Explainer_example_explainer
           source: PBACON_ATT_DB.GANDALF.EXAMPLE_EXPLAINER
-          description: Stores re-usable callout references to integrate into Workshop and
+          description: Stores reusable callout references to integrate into Workshop and
             other one state examples
           fields:
             - name: id

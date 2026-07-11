@@ -71,7 +71,7 @@ The top-level container that represents a complete semantic model, including dat
 | `ai_context` | string/object | No | Additional context for AI tools (e.g., custom instructions) |
 | `datasets` | array | Yes | Collection of logical datasets (fact and dimension tables) |
 | `relationships` | array | No | Defines how logical datasets are connected |
-| `metrics` | array | No | Quantifiable measures defined as aggregate expessions on fields from logical datsets |
+| `metrics` | array | No | Quantifiable measures defined as aggregate expressions on fields from logical datasets |
 | `custom_extensions` | array | No | Vendor-specific attributes for extensibility |
 
 ### Example
